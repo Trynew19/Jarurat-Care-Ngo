@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-require("dotenv").config();
+require('dotenv').config();
 const userRoutes = require('./routes/userRoutes');
 const resourceRoutes = require('./routes/resourceRoutes');
 
@@ -8,17 +8,16 @@ const resourceRoutes = require('./routes/resourceRoutes');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-
 // Database Connection
 require('./db/db');
 
 // Routes
-app.get('/', (req, res) => { res.send('Welcome to the Resource Management API!'); });
-app.use("/api/users", userRoutes);
-app.use("/api/resources", resourceRoutes);
-
-
-// Server Connection  
-app.listen(process.env.PORT, () => {
-  console.log('App listening on port 3000!');
+app.get('/', (req, res) => {
+  res.send('Welcome to the Resource Management API!');
 });
+
+app.use('/api/users', userRoutes);
+app.use('/api/resources', resourceRoutes);
+
+// Export the app for Vercel
+module.exports = app;
