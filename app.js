@@ -13,6 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 require('./db/db');
 
 // Routes
+app.get('/', (req, res) => { res.send('Welcome to the Resource Management API!'); });
 app.use("/api/users", userRoutes);
 app.use("/api/resources", resourceRoutes);
 
